@@ -1,0 +1,86 @@
+/* Custom animations and effects */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes scoreFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+/* Custom styles for specific garbage types */
+.garbage-item:hover {
+    transform: scale(1.1);
+}
+
+.garbage-item.dragging {
+    cursor: grabbing;
+    transform: scale(1.2);
+    z-index: 100;
+}
+
+.bin.highlight {
+    box-shadow: 0 0 15px #fff, 0 0 25px #fff, 0 0 35px #fff;
+    animation: pulse 0.5s ease-in-out infinite alternate;
+}
+
+.score-popup {
+    animation: scoreFloat 1s ease-out forwards;
+}
+
+.wrong-score {
+    color: #FF6B6B !important;
+}
+
+/* Specific background colors for garbage types */
+.garbage-item.paper {
+    background: #FFF8DC;
+    color: #8B4513;
+}
+
+.garbage-item.pet-bottle {
+    background: #87CEEB;
+    color: #000080;
+}
+
+.garbage-item.aluminum-can {
+    background: #C0C0C0;
+    color: #2F4F4F;
+}
+
+.garbage-item.food {
+    background: #DEB887;
+    color: #8B4513;
+}
+
+.garbage-item.plastic-bag {
+    background: #FFE4E1;
+    color: #DC143C;
+}
+
+.garbage-item.battery {
+    background: #2F4F4F;
+    color: #FFFFFF;
+}
+
+.garbage-item.furniture {
+    background: #D2B48C;
+    color: #8B4513;
+}
+
+.garbage-item.glass {
+    background: #E6E6FA;
+    color: #4B0082;
+}
+
