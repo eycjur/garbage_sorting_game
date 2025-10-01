@@ -151,14 +151,14 @@ class GarbageSortingGame {
         const garbageElement = document.createElement('div');
 
         // DOM要素の設定
-        garbageElement.className = `absolute w-24 h-24 rounded-lg cursor-grab transition-transform duration-100 z-10 flex flex-col items-center justify-center text-xl border-2 border-gray-800 font-bold text-center p-1 select-none garbage-item ${garbageType.name}`;
-        garbageElement.innerHTML = `<div class="text-4xl mb-0.5">${garbageType.emoji}</div><div class="text-sm font-bold leading-none">${garbageType.label}</div>`;
+        garbageElement.className = `absolute w-36 h-36 rounded-lg cursor-grab transition-transform duration-100 z-10 flex flex-col items-center justify-center text-xl border-2 border-gray-800 font-bold text-center p-2 select-none garbage-item ${garbageType.name}`;
+        garbageElement.innerHTML = `<div class="text-7xl mb-1">${garbageType.emoji}</div><div class="text-xl font-bold leading-tight">${garbageType.label}</div>`;
         garbageElement.dataset.type = garbageType.type;
         garbageElement.dataset.points = garbageType.points;
 
-        // 画面中央に配置（アイテム幅90pxを考慮）
+        // 画面中央に配置（アイテム幅144pxを考慮）
         const fallingZone = document.getElementById('falling-zone');
-        const centerX = (fallingZone.offsetWidth - 90) / 2;
+        const centerX = (fallingZone.offsetWidth - 144) / 2;
 
         garbageElement.style.left = centerX + 'px';
         garbageElement.style.top = '0px';
@@ -188,11 +188,11 @@ class GarbageSortingGame {
                 item.y += item.speed;
                 item.element.style.top = item.y + 'px';
 
-                // 落下エリアの下端に到達したかチェック
+                // 落下エリアの下端に到達したかチェック（少し早めに判定）
                 const fallingZone = document.getElementById('falling-zone');
-                if (item.y > fallingZone.offsetHeight) {
+                if (item.y > fallingZone.offsetHeight - 60) {
                     // 落下時にゴミ箱判定を行う（アイテム中央のX座標で判定）
-                    const targetBin = this.getBinAtPosition(item.x + 45);
+                    const targetBin = this.getBinAtPosition(item.x + 72);
 
                     if (targetBin) {
                         // ゴミ箱に落ちた場合の自動分別判定
@@ -442,7 +442,7 @@ class GarbageSortingGame {
         // 落下データを復元し、エリア内に制限
         const newItem = {
             element: this.draggedItem,
-            x: Math.max(0, Math.min(relativeX, fallingZone.offsetWidth - 90)),
+            x: Math.max(0, Math.min(relativeX, fallingZone.offsetWidth - 144)),
             y: Math.max(0, relativeY),
             speed: this.draggedItemData.speed
         };
